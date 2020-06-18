@@ -17,6 +17,16 @@ public aspect Logger {
     	}catch(IOException ex) {
     		ex.printStackTrace();
     	}
-    }    
+    }   
+    
+    
+    pointcut successRetirar() : call(void Bank.moneyWithdrawal() );
+    after() : successRetirar() {   
+    	try(BufferedWriter bf = new BufferedWriter(new FileWriter("Log.txt"))){
+			bf.write("Retiro realizado, "+LocalDateTime.now().toString());
+    	}catch(IOException ex) {
+    		ex.printStackTrace();
+    	}
+    } 
 }
 
