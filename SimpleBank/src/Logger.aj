@@ -12,21 +12,20 @@ public aspect Logger {
 	
     pointcut success() : call(void Bank.moneyMakeTransaction() );
     after() : success() {   
-    	try(BufferedWriter bf = new BufferedWriter(new FileWriter("Log.txt"))){
-			bf.write("Realizar Transaccion, "+LocalDateTime.now().toString());
+    	try(BufferedWriter bf = new BufferedWriter(new FileWriter("Log.txt",true))){
+			bf.append("Realizar Transaccion, "+LocalDateTime.now().toString()+"\n");
+			System.out.println("Realizar Transaccion consola:, "+LocalDateTime.now().toString());
     	}catch(IOException ex) {
     		ex.printStackTrace();
     	}
     }   
     
-    
     pointcut successRetirar() : call(void Bank.moneyWithdrawal() );
     after() : successRetirar() {   
-    	try(BufferedWriter bf = new BufferedWriter(new FileWriter("Log.txt"))){
-			bf.write("Retiro realizado, "+LocalDateTime.now().toString());
+    	try(BufferedWriter bf = new BufferedWriter(new FileWriter("Log.txt",true))){
+			bf.append("Retiro realizado, "+LocalDateTime.now().toString()+"\n");
     	}catch(IOException ex) {
     		ex.printStackTrace();
     	}
-    } 
+    }
 }
-
