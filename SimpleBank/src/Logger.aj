@@ -1,16 +1,12 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
 import java.io.Writer;
 import java.util.Calendar;
-
 import com.bank.*;
 
-
-public aspect Logger {
+public aspect Logger{
 	pointcut success() : call(void Bank.moneyMakeTransaction());
     after() : success() {
     //Aspecto ejemplo: solo muestra este mensaje después de haber creado un usuario 
@@ -41,3 +37,4 @@ public aspect Logger {
     	
     }
 }
+
