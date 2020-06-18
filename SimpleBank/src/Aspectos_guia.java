@@ -1,3 +1,5 @@
+import java.io.File;
+import java.util.Calendar;
 
 class Aspectos_guia{
 	//Esta clase debe ser eliminada
