@@ -2,10 +2,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import com.bank.*;
+
 
 
 public aspect Logger {
@@ -16,8 +16,7 @@ public aspect Logger {
 			bf.append("Realizar Transaccion, "+LocalDateTime.now().toString()+"\n");
 			System.out.println("Realizar Transaccion consola:, "+LocalDateTime.now().toString());
     	}catch(IOException ex) {
-    		System.out.println(ex.getMessage());
-    		
+    		ex.printStackTrace();
     	}
     }   
     
@@ -25,12 +24,9 @@ public aspect Logger {
     after() : successRetirar() {   
     	try(BufferedWriter bf = new BufferedWriter(new FileWriter("Log.txt",true))){
 			bf.append("Retiro realizado, "+LocalDateTime.now().toString()+"\n");
-			System.out.println("Retiro realizado:, "+LocalDateTime.now().toString());
+			System.out.println("Retiro realizado consola, "+LocalDateTime.now().toString());
     	}catch(IOException ex) {
-    		System.out.println(ex.getMessage());
+    		ex.printStackTrace();
     	}
     }
 }
-
-
-
